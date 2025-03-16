@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admin_template.mapper.PermissionMapper">
+
+    <resultMap id="PermissionResultMap" type="com.example.admin_template.entity.acl.Permission">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="type" column="type"/>
+        <result property="level" column="level"/>
+        <result property="select" column="select"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <collection property="children" ofType="com.example.admin_template.entity.acl.Permission" select="findChildrenByPid" column="id"/>
+    </resultMap>
+
+    <select id="findAllWithChildren" resultMap="PermissionResultMap">
+        SELECT * FROM permission WHERE pid = 0
+    </select>
+
+    <select id="findChildrenByPid" resultMap="PermissionResultMap">
+        SELECT * FROM permission WHERE pid = #{id}
+    </select>
+
+    <select id="selectPermissionsByIds" resultType="com.example.admin_template.entity.acl.Permission">
+        SELECT id, pid, name, code, type, level, `select`, create_time, update_time
+        FROM permission
+        WHERE id IN
+        <foreach collection="permissionIds" item="permissionId" open="(" close=")" separator=",">
+            #{permissionId}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admin_template.mapper.SkuMapper">
+    <resultMap id="BaseResultMap" type="com.example.admin_template.entity.sku.Sku">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="category3Id" column="category3_id" jdbcType="INTEGER"/>
+        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+        <result property="tmId" column="tm_id" jdbcType="INTEGER"/>
+        <result property="skuName" column="sku_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="weight" column="weight" jdbcType="DECIMAL"/>
+        <result property="skuDesc" column="sku_desc" jdbcType="VARCHAR"/>
+        <result property="skuDefaultImg" column="sku_default_img" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isSale" column="is_sale" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,category3_id,spu_id,
+        tm_id,sku_name,price,
+        weight,sku_desc,sku_default_img,
+        create_time,update_time, is_sale
+    </sql>
+
+    <delete id="deleteBySpuId">
+        DELETE
+        FROM sku
+        WHERE spu_id = #{spuId}
+    </delete>
+</mapper>

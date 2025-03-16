@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admin_template.mapper.AttrMapper">
+    <resultMap id="BaseResultMap" type="com.example.admin_template.entity.Attr">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="attrName" column="attr_name" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+        <result property="categoryLevel" column="category_level" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,attr_name,category_id,
+        category_level
+    </sql>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admin_template.mapper.SaleAttrValueMapper">
+    <resultMap id="BaseResultMap" type="com.example.admin_template.entity.spu.SaleAttrValue">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+        <result property="baseSaleAttrId" column="base_sale_attr_id" jdbcType="INTEGER"/>
+        <result property="saleAttrValueName" column="sale_attr_value_name" jdbcType="VARCHAR"/>
+        <result property="saleAttrName" column="sale_attr_name" jdbcType="VARCHAR"/>
+        <result property="isChecked" column="is_checked" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,spu_id,base_sale_attr_id,
+        sale_attr_value_name,sale_attr_name,is_checked
+    </sql>
+
+    <select id="selectBySpuIdAndBaseSaleAttrId" resultType="com.example.admin_template.entity.spu.SaleAttrValue">
+        SELECT *
+        FROM sakana.sale_attr_value
+        WHERE spu_id = #{spuId}
+          AND base_sale_attr_id = #{baseSaleAttrId}
+    </select>
+
+    <delete id="deleteBySpuId">
+        DELETE
+        FROM sakana.sale_attr_value
+        WHERE spu_id = #{spuId}
+    </delete>
+</mapper>
